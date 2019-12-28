@@ -1,16 +1,22 @@
 package com.margge.dogami.presentation.main
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.margge.dogami.Game
-import com.margge.dogami.data.NetworkHelper
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
+import com.margge.dogami.data.GamesRepository
+import com.margge.dogami.utils.Scope
+import kotlinx.coroutines.launch
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+class MainViewModel(private val gamesRepository: GamesRepository) : ViewModel(),
+    Scope by Scope.Impl() {
+
+    sealed class UiModel {
+        object Loading : UiModel()
+        class Content(val games: List<Game>) : UiModel()
+        class Navigation(val game: Game) : UiModel()
+    }
 
     private val _model: MutableLiveData<UiModel> = MutableLiveData()
     val model: LiveData<UiModel>
@@ -19,31 +25,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             return _model
         }
 
-    sealed class UiModel {
-
-        object Loading : UiModel()
-        object Error : UiModel()
-        class Content(val games: List<Game>) : UiModel()
-        class Navigation(val game: Game) : UiModel()
+    init {
+        initScope()
     }
 
     private fun fetchGames() {
-        NetworkHelper.tmdbApi().getListGames()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(Consumer { onSuccess(it) }, Consumer { onError(it) })
+        launch {
+            _model.value = UiModel.Loading
+            _model.value = UiModel.Content(gamesRepository.getGamesList())
+        }
     }
 
-    private fun onSuccess(response: List<Game>) {
-        _model.value = UiModel.Content(response)
-    }
-
-    private fun onError(it: Throwable) {
-        _model.value = UiModel.Error
-    }
-
-
-    fun onGameClicked(game:Game) {
+    fun onGameClicked(game: Game) {
         _model.value = UiModel.Navigation(game)
     }
+
+    override fun onCleared() {
+        destroyScope()
+        super.onCleared()
+    }
+}
+
+@Suppress("UNCHECKED_CAST")
+class MainViewModelFactory(private val gamesRepository: GamesRepository) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel?> create(modelClass: Class<T>): T = MainViewModel(gamesRepository) as T
 }
