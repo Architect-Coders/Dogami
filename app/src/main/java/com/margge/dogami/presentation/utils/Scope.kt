@@ -1,4 +1,4 @@
-package com.margge.dogami.utils
+package com.margge.dogami.presentation.utils
 
 import kotlin.coroutines.CoroutineContext
 import kotlinx.coroutines.CoroutineScope

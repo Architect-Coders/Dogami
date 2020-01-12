@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.margge.dogami.Game
 import com.margge.dogami.data.GamesRepository
-import com.margge.dogami.utils.Scope
+import com.margge.dogami.presentation.utils.Scope
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val gamesRepository: GamesRepository) : ViewModel(),

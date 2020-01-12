@@ -10,8 +10,8 @@ import com.margge.dogami.presentation.detail.DetailActivity
 import com.margge.dogami.presentation.main.adapter.GameAdapter
 import com.margge.dogami.presentation.main.MainViewModel.UiModel
 import kotlinx.android.synthetic.main.activity_main.*
-import com.margge.dogami.utils.SpacesItemDecoration
-import com.margge.dogami.utils.startActivity
+import com.margge.dogami.presentation.utils.SpacesItemDecoration
+import com.margge.dogami.presentation.utils.startActivity
 
 class MainActivity : AppCompatActivity() {
 

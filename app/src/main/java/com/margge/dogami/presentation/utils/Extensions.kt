@@ -1,4 +1,4 @@
-package com.margge.dogami.utils
+package com.margge.dogami.presentation.utils
 
 import android.app.Activity
 import android.content.Context
@@ -7,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -21,8 +19,6 @@ fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): 
 fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).into(this)
 }
-
-fun AppCompatActivity.showToast(message: String) = Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =
     Intent(this, T::class.java).apply(body)
