@@ -1,6 +1,5 @@
-package com.margge.dogami.data
+package com.margge.dogami.data.server
 
-import com.margge.dogami.Game
 import kotlinx.coroutines.Deferred
 import retrofit2.http.GET
 import retrofit2.http.Query

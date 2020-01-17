@@ -1,4 +1,4 @@
-package com.margge.dogami.data
+package com.margge.dogami.data.server
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import retrofit2.Retrofit
@@ -15,6 +15,7 @@ object NetworkHelper {
     }
 
     fun dogamiApi(): DogamiApi {
-        return retrofit().create(DogamiApi::class.java)
+        return retrofit()
+            .create(DogamiApi::class.java)
     }
 }

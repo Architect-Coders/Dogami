@@ -3,15 +3,16 @@ package com.margge.dogami.presentation.main
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.margge.dogami.data.GamesRepository
+import com.margge.dogami.data.server.GamesRepository
 import com.margge.dogami.presentation.detail.DetailActivity
-import com.margge.dogami.presentation.main.adapter.GameAdapter
 import com.margge.dogami.presentation.main.MainViewModel.UiModel
-import kotlinx.android.synthetic.main.activity_main.*
+import com.margge.dogami.presentation.main.adapter.GameAdapter
 import com.margge.dogami.presentation.utils.SpacesItemDecoration
+import com.margge.dogami.presentation.utils.app
+import com.margge.dogami.presentation.utils.getViewModel
 import com.margge.dogami.presentation.utils.startActivity
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,15 +23,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(com.margge.dogami.R.layout.activity_main)
 
-        viewModel = ViewModelProviders
-            .of(this, MainViewModelFactory(GamesRepository()))
-            .get(MainViewModel::class.java)
+        viewModel = getViewModel { MainViewModel(GamesRepository(app)) }
 
         adapter = GameAdapter(viewModel::onGameClicked)
         gamesRecycler.adapter = adapter
         gamesRecycler.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-        val decoration = SpacesItemDecoration(16)
+        val decoration = SpacesItemDecoration(50)
         gamesRecycler.addItemDecoration(decoration)
 
         viewModel.model.observe(this, Observer(::updateUI))
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
         when (game) {
             is UiModel.Content -> adapter.games = game.games
             is UiModel.Navigation -> startActivity<DetailActivity> {
-                putExtra(DetailActivity.GAME, game.game)
+                putExtra(DetailActivity.GAME, game.game.id)
             }
         }
     }

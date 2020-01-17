@@ -56,6 +56,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
+                android:fontFamily="@font/amiko_bold"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="18sp"
@@ -67,6 +68,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
+                android:fontFamily="@font/amiko_bold"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="18sp"
@@ -78,6 +80,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:color/white"
+                android:fontFamily="@font/amiko_bold"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="18sp"
@@ -90,6 +93,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
+                android:fontFamily="@font/amiko_semibold"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="18sp"
@@ -105,6 +109,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="20dp"
                 android:background="@android:color/white"
+                android:fontFamily="@font/amiko"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
                 android:textSize="18sp"
@@ -112,7 +117,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gamePosterImageView"
-                tools:text="Hombres Lobo de Castronegro" />
+                tools:text="@tools:sample/lorem/random" />
 
         </LinearLayout>
 

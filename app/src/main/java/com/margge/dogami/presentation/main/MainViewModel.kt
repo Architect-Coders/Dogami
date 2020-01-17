@@ -2,15 +2,12 @@ package com.margge.dogami.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import com.margge.dogami.Game
-import com.margge.dogami.data.GamesRepository
-import com.margge.dogami.presentation.utils.Scope
+import com.margge.dogami.data.database.Game
+import com.margge.dogami.data.server.GamesRepository
+import com.margge.dogami.presentation.utils.ScopedViewModel
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val gamesRepository: GamesRepository) : ViewModel(),
-    Scope by Scope.Impl() {
+class MainViewModel(private val gamesRepository: GamesRepository) : ScopedViewModel() {
 
     sealed class UiModel {
         object Loading : UiModel()
@@ -44,10 +41,4 @@ class MainViewModel(private val gamesRepository: GamesRepository) : ViewModel(),
         destroyScope()
         super.onCleared()
     }
-}
-
-@Suppress("UNCHECKED_CAST")
-class MainViewModelFactory(private val gamesRepository: GamesRepository) : ViewModelProvider.Factory {
-
-    override fun <T : ViewModel?> create(modelClass: Class<T>): T = MainViewModel(gamesRepository) as T
 }

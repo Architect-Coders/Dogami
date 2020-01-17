@@ -1,9 +1,5 @@
-package com.margge.dogami
+package com.margge.dogami.data.server
 
-import android.os.Parcelable
-import kotlinx.android.parcel.Parcelize
-
-@Parcelize
 data class Game(
     val id: Int,
     val name: String,
@@ -15,4 +11,4 @@ data class Game(
     val minAge: String,
     val imageUrl: String,
     val posterUrl: String
-) : Parcelable
+)
