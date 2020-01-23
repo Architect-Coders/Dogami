@@ -33,14 +33,12 @@ class GameAdapter(private val listener: (Game) -> Unit) :
 
     class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(game: Game) {
-            if (game.imageUrl == null) {
-                itemView.gamePosterImageView.loadUrl("https://i.imgur.com/FVOHmfg.png")
-            } else {
-                itemView.gamePosterImageView.loadUrl(game.imageUrl)
-            }
+        private val gamePosterImage = itemView.gamePosterImageView
+        private val gameName = itemView.gameDetailName
 
-            itemView.gameDetailName.text = game.name
+        fun bind(game: Game) {
+            gamePosterImage.loadUrl(game.imageUrl)
+            gameName.text = game.name
         }
     }
 }

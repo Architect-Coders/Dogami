@@ -30,11 +30,7 @@ class DetailActivity : AppCompatActivity() {
     }
 
     private fun updateUI(model: DetailViewModel.UiModel) = with(model.game) {
-        if (model.game.posterUrl == null)
-            gamePosterImageView.loadUrl("https://i.imgur.com/xY1A7nM.png")
-        else
-            gamePosterImageView.loadUrl(model.game.posterUrl)
-
+        gamePosterImageView.loadUrl(model.game.posterUrl)
         gameDetailToolbar.title = model.game.name
         playersGameTextView.text = getString(
             R.string.detail_game_players_number,
