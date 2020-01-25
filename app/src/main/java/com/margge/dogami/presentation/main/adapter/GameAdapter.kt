@@ -37,7 +37,7 @@ class GameAdapter(private val listener: (Game) -> Unit) :
         private val gameName = itemView.gameDetailName
 
         fun bind(game: Game) {
-            gamePosterImage.loadUrl(game.imageUrl)
+            gamePosterImage.loadUrl(game.imageUrl, R.drawable.default_board_game)
             gameName.text = game.name
         }
     }

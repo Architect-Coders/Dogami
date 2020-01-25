@@ -27,10 +27,11 @@ class DetailActivity : AppCompatActivity() {
         }
 
         viewModel.model.observe(this, Observer(::updateUI))
+        favoriteGameButton.setOnClickListener { viewModel.onFavoriteGameClicked() }
     }
 
     private fun updateUI(model: DetailViewModel.UiModel) = with(model.game) {
-        gamePosterImageView.loadUrl(model.game.posterUrl)
+        gamePosterImageView.loadUrl(model.game.posterUrl, R.drawable.default_board_game_detail)
         gameDetailToolbar.title = model.game.name
         playersGameTextView.text = getString(
             R.string.detail_game_players_number,
@@ -41,5 +42,9 @@ class DetailActivity : AppCompatActivity() {
             getString(R.string.detail_game_complexity, "${model.game.complexity} ")
         gameNameTextView.text = model.game.name
         gameDescriptionTextView.text = model.game.description
+
+        val favoriteIcon =
+            if (isFavorite) R.drawable.ic_favorite_selected else R.drawable.ic_favorite_unselected
+        favoriteGameButton.setImageDrawable(getDrawable(favoriteIcon))
     }
 }

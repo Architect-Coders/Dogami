@@ -21,10 +21,8 @@ import kotlin.properties.Delegates
 fun ViewGroup.inflate(@LayoutRes layoutRes: Int, attachToRoot: Boolean = true): View =
     LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot)
 
-fun ImageView.loadUrl(url: String?) {
-    url?.let {
-        Glide.with(context).load(it).into(this)
-    }
+fun ImageView.loadUrl(url: String?, defaultImageRes: Int) {
+    Glide.with(context).load(url).error(defaultImageRes).into(this)
 }
 
 inline fun <reified T : Activity> Context.intentFor(body: Intent.() -> Unit): Intent =
