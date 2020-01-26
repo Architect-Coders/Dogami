@@ -4,10 +4,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.margge.dogami.R
-import com.margge.dogami.data.database.Game
 import com.margge.dogami.presentation.utils.basicDiffUtil
 import com.margge.dogami.presentation.utils.inflate
 import com.margge.dogami.presentation.utils.loadUrl
+import com.margge.domain.Game
 import kotlinx.android.synthetic.main.game_item.view.*
 
 class GameAdapter(private val listener: (Game) -> Unit) :

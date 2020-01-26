@@ -9,5 +9,5 @@ interface DogamiApi {
     fun getListGamesAsync(
         @Query("language") query: String? = null,
         @Query("page") page: Int? = null
-    ): Deferred<List<Game>>
+    ): Deferred<List<DogamiGameResult>>
 }

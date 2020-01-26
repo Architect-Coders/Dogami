@@ -2,12 +2,12 @@ package com.margge.dogami.presentation.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.margge.dogami.data.database.Game
-import com.margge.dogami.data.server.GamesRepository
 import com.margge.dogami.presentation.utils.ScopedViewModel
+import com.margge.domain.Game
+import com.margge.usecases.GetGamesUseCase
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val gamesRepository: GamesRepository) : ScopedViewModel() {
+class MainViewModel(private val getGamesUseCase: GetGamesUseCase) : ScopedViewModel() {
 
     sealed class UiModel {
         object Loading : UiModel()
@@ -29,7 +29,7 @@ class MainViewModel(private val gamesRepository: GamesRepository) : ScopedViewMo
     private fun fetchGames() {
         launch {
             _model.value = UiModel.Loading
-            _model.value = UiModel.Content(gamesRepository.getGamesList())
+            _model.value = UiModel.Content(getGamesUseCase.invoke())
         }
     }
 

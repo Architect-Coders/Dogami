@@ -11,12 +11,12 @@ interface GameDao {
     @Update
     fun updateGame(game: Game)
 
-    @Query("SELECT * FROM Game")
+    @Query("SELECT * FROM DogamiGameResult")
     fun loadAllGames(): List<Game>
 
-    @Query("SELECT * FROM Game WHERE id = :id")
+    @Query("SELECT * FROM DogamiGameResult WHERE id = :id")
     fun findById(id: Int): Game
 
-    @Query("SELECT COUNT(id) FROM Game")
+    @Query("SELECT COUNT(id) FROM DogamiGameResult")
     fun gameCount(): Int
 }

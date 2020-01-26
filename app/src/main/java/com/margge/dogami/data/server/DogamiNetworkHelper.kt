@@ -4,7 +4,7 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterF
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object NetworkHelper {
+object DogamiNetworkHelper {
 
     private fun retrofit(): Retrofit {
         return Retrofit.Builder()

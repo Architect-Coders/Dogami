@@ -2,11 +2,11 @@ package com.margge.dogami
 
 import android.app.Application
 import androidx.room.Room
-import com.margge.dogami.data.database.DogamiDatabase
+import com.margge.dogami.data.database.GameDatabase
 
 class DogamiApp : Application() {
 
-    lateinit var db: DogamiDatabase
+    lateinit var db: GameDatabase
         private set
 
     override fun onCreate() {
@@ -14,7 +14,7 @@ class DogamiApp : Application() {
 
         db = Room.databaseBuilder(
             this,
-            DogamiDatabase::class.java, "boardGame-db"
+            GameDatabase::class.java, "boardGame-db"
         ).build()
     }
 }

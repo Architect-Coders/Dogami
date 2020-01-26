@@ -1,11 +1,7 @@
-package com.margge.dogami.data.database
+package com.margge.domain
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-
-@Entity(tableName = "DogamiGameResult")
 data class Game(
-    @PrimaryKey(autoGenerate = true) val id: Int,
+    val id: Int,
     val name: String,
     val minPlayers: Int,
     val maxPlayers: Int,

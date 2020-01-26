@@ -1,6 +1,6 @@
 package com.margge.dogami.data.server
 
-data class Game(
+data class DogamiGameResult(
     val id: Int,
     val name: String,
     val minPlayers: Int,
@@ -10,5 +10,6 @@ data class Game(
     val complexity: String,
     val minAge: String,
     val imageUrl: String,
-    val posterUrl: String
+    val posterUrl: String,
+    val favorite: Boolean
 )
