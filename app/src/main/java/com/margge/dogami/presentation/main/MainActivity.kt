@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.margge.data.repository.GamesRepository
+import com.margge.dogami.R
 import com.margge.dogami.data.database.RoomDataSource
 import com.margge.dogami.data.server.DogamiDataSource
 import com.margge.dogami.presentation.detail.DetailActivity
@@ -24,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(com.margge.dogami.R.layout.activity_main)
+        setContentView(R.layout.activity_main)
 
         viewModel = getViewModel {
             MainViewModel(
