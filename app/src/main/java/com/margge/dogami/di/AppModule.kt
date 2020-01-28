@@ -12,11 +12,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class AppModule(val app: Application) {
+class AppModule {
 
     @Provides
     @Singleton
-    fun databaseProvider() =
+    fun databaseProvider(app: Application) =
         Room.databaseBuilder(
             app,
             GameDatabase::class.java, "boardGame-db"

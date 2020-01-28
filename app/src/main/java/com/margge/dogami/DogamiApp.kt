@@ -1,9 +1,7 @@
 package com.margge.dogami
 
 import android.app.Application
-import com.margge.dogami.di.AppModule
 import com.margge.dogami.di.DaggerDogamiComponent
-import com.margge.dogami.di.DataModule
 import com.margge.dogami.di.DogamiComponent
 
 class DogamiApp : Application() {
@@ -15,9 +13,7 @@ class DogamiApp : Application() {
         super.onCreate()
 
         component = DaggerDogamiComponent
-            .builder()
-            .appModule(AppModule(this))
-            .dataModule(DataModule())
-            .build()
+            .factory()
+            .create(this)
     }
 }
