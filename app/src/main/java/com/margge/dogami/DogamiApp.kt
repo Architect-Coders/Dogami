@@ -1,20 +1,23 @@
 package com.margge.dogami
 
 import android.app.Application
-import androidx.room.Room
-import com.margge.dogami.data.database.GameDatabase
+import com.margge.dogami.di.AppModule
+import com.margge.dogami.di.DaggerDogamiComponent
+import com.margge.dogami.di.DataModule
+import com.margge.dogami.di.DogamiComponent
 
 class DogamiApp : Application() {
 
-    lateinit var db: GameDatabase
+    lateinit var component: DogamiComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
 
-        db = Room.databaseBuilder(
-            this,
-            GameDatabase::class.java, "boardGame-db"
-        ).build()
+        component = DaggerDogamiComponent
+            .builder()
+            .appModule(AppModule(this))
+            .dataModule(DataModule())
+            .build()
     }
 }

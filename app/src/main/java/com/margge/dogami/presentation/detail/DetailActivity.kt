@@ -3,15 +3,10 @@ package com.margge.dogami.presentation.detail
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.margge.data.repository.GamesRepository
 import com.margge.dogami.R
-import com.margge.dogami.data.database.RoomDataSource
-import com.margge.dogami.data.server.DogamiDataSource
 import com.margge.dogami.presentation.utils.app
 import com.margge.dogami.presentation.utils.getViewModel
 import com.margge.dogami.presentation.utils.loadUrl
-import com.margge.usecases.GetGameByIdUseCase
-import com.margge.usecases.UpdateGameUseCase
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailActivity : AppCompatActivity() {
@@ -20,24 +15,14 @@ class DetailActivity : AppCompatActivity() {
         const val GAME = "DetailActivity:game"
     }
 
-    private lateinit var viewModel: DetailViewModel
+    private lateinit var component: DetailActivityComponent
+    private val viewModel: DetailViewModel by lazy { getViewModel { component.detailViewModel } }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val gamesRepository = GamesRepository(
-            RoomDataSource(app.db),
-            DogamiDataSource()
-        )
-
-        viewModel = getViewModel {
-            DetailViewModel(
-                intent.getIntExtra(GAME, -1),
-                GetGameByIdUseCase(gamesRepository),
-                UpdateGameUseCase(gamesRepository)
-            )
-        }
+        component = app.component.plus(DetailActivityModule(intent.getIntExtra(GAME, -1)))
 
         viewModel.model.observe(this, Observer(::updateUI))
         favoriteGameButton.setOnClickListener { viewModel.onFavoriteGameClicked() }

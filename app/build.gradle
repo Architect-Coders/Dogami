@@ -48,6 +48,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.recyclerview:recyclerview:$recyclerview_version"
     implementation "com.google.android.material:material:$material_version"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
 
     /*
     * Coroutines
@@ -73,17 +74,6 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.9.0'
 
     /*
-    * Dagger2
-    */
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    implementation "com.google.dagger:dagger-android-support:$daggerVersion"
-    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
-
-    testImplementation 'junit:junit:4.12'
-    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
-
-    /*
     * Room
     */
     implementation 'androidx.room:room-runtime:2.2.3'
@@ -91,4 +81,10 @@ dependencies {
 
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+
+    /*
+    * Dagger2
+    */
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
 }
