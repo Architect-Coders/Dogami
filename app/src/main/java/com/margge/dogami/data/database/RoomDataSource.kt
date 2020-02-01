@@ -7,7 +7,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import com.margge.domain.Game as DomainGame
 
-class RoomDataSource(private val db: GameDatabase) : LocalDataSource {
+class RoomDataSource(db: GameDatabase) : LocalDataSource {
 
     private val gameDao = db.gameDao()
 

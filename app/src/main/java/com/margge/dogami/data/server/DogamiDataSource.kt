@@ -8,10 +8,10 @@ import kotlinx.coroutines.withContext
 
 class DogamiDataSource : RemoteDataSource {
 
-    override suspend fun getBoardGames(): List<Game> =
+    override suspend fun getBoardGames(location:String): List<Game> =
         withContext(Dispatchers.IO) {
             DogamiNetworkHelper.dogamiApi()
-                .getListGamesAsync()
+                .getListGamesAsync(location = location)
                 .await()
                 .map { it.toRoomGame() }
         }

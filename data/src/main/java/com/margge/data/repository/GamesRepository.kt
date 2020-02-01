@@ -6,13 +6,14 @@ import com.margge.domain.Game
 
 class GamesRepository(
     private val localDataSource: LocalDataSource,
-    private val remoteDataSource: RemoteDataSource
+    private val remoteDataSource: RemoteDataSource,
+    private val locationRepository: LocationRepository
 ) {
 
     suspend fun getBoardGames(): List<Game> {
 
         if (localDataSource.isEmpty()) {
-            val games = remoteDataSource.getBoardGames()
+            val games = remoteDataSource.getBoardGames(locationRepository.getLastLocation())
             localDataSource.saveBoardGames(games)
         }
 

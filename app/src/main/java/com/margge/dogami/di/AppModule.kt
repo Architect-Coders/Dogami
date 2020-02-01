@@ -2,8 +2,12 @@ package com.margge.dogami.di
 
 import android.app.Application
 import androidx.room.Room
+import com.margge.data.repository.PermissionHelper
 import com.margge.data.source.LocalDataSource
+import com.margge.data.source.LocationDataSource
 import com.margge.data.source.RemoteDataSource
+import com.margge.dogami.data.AndroidPermissionHelper
+import com.margge.dogami.data.GMSLocationDataSource
 import com.margge.dogami.data.database.GameDatabase
 import com.margge.dogami.data.database.RoomDataSource
 import com.margge.dogami.data.server.DogamiDataSource
@@ -27,4 +31,10 @@ class AppModule {
 
     @Provides
     fun remoteDataSourceProvider(): RemoteDataSource = DogamiDataSource()
+
+    @Provides
+    fun permissionHelperProvider(app: Application): PermissionHelper = AndroidPermissionHelper(app)
+
+    @Provides
+    fun locationDataSourceProvider(app: Application): LocationDataSource = GMSLocationDataSource(app)
 }

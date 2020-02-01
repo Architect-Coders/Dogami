@@ -13,12 +13,13 @@ class MainViewModel(private val getGamesUseCase: GetGamesUseCase) : ScopedViewMo
         object Loading : UiModel()
         class Content(val games: List<Game>) : UiModel()
         class Navigation(val game: Game) : UiModel()
+        object RequestLocationPermission : UiModel()
     }
 
     private val _model: MutableLiveData<UiModel> = MutableLiveData()
     val model: LiveData<UiModel>
         get() {
-            if (_model.value == null) fetchGames()
+            if (_model.value == null) refresh()
             return _model
         }
 
@@ -26,15 +27,19 @@ class MainViewModel(private val getGamesUseCase: GetGamesUseCase) : ScopedViewMo
         initScope()
     }
 
-    private fun fetchGames() {
-        launch {
-            _model.value = UiModel.Loading
-            _model.value = UiModel.Content(getGamesUseCase.invoke())
-        }
+    private fun refresh() {
+        _model.value = UiModel.RequestLocationPermission
     }
 
     fun onGameClicked(game: Game) {
         _model.value = UiModel.Navigation(game)
+    }
+
+    fun onCoarsePermissionRequested() {
+        launch {
+            _model.value = UiModel.Loading
+            _model.value = UiModel.Content(getGamesUseCase.invoke())
+        }
     }
 
     override fun onCleared() {
