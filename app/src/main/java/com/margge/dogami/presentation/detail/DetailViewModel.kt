@@ -30,9 +30,9 @@ class DetailViewModel(
 
     fun onFavoriteGameClicked() = launch {
         _model.value?.game?.let {
-            val updatedGame = it.copy(favorite = !it.favorite)
-            _model.value = UiModel(updatedGame)
-            updateGameUseCase.invoke(updatedGame)
+            //val updatedGame = it.copy(favorite = !it.favorite)
+            _model.value = UiModel(updateGameUseCase.invoke(it))
+            //updateGameUseCase.invoke(updatedGame)
         }
     }
 }
