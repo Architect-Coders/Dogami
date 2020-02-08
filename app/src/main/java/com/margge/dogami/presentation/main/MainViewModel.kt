@@ -5,9 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import com.margge.dogami.presentation.utils.ScopedViewModel
 import com.margge.domain.Game
 import com.margge.usecases.GetGamesUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class MainViewModel(private val getGamesUseCase: GetGamesUseCase) : ScopedViewModel() {
+class MainViewModel(
+    private val getGamesUseCase: GetGamesUseCase,
+    uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
     sealed class UiModel {
         object Loading : UiModel()

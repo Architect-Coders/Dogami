@@ -6,14 +6,15 @@ import com.margge.dogami.presentation.utils.ScopedViewModel
 import com.margge.domain.Game
 import com.margge.usecases.GetGameByIdUseCase
 import com.margge.usecases.UpdateGameUseCase
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
     private val gameId: Int,
     private val getGameByIdUseCase: GetGameByIdUseCase,
-    private val updateGameUseCase: UpdateGameUseCase
-) :
-    ScopedViewModel() {
+    private val updateGameUseCase: UpdateGameUseCase,
+    override val uiDispatcher: CoroutineDispatcher
+) : ScopedViewModel(uiDispatcher) {
 
     class UiModel(val game: Game)
 
@@ -24,15 +25,22 @@ class DetailViewModel(
             return _model
         }
 
+    init {
+        initScope()
+    }
+
     private fun findGame() = launch {
-        _model.value = UiModel((getGameByIdUseCase.invoke(gameId)))
+        _model.value = UiModel(getGameByIdUseCase.invoke(gameId))
     }
 
     fun onFavoriteGameClicked() = launch {
         _model.value?.game?.let {
-            //val updatedGame = it.copy(favorite = !it.favorite)
             _model.value = UiModel(updateGameUseCase.invoke(it))
-            //updateGameUseCase.invoke(updatedGame)
         }
+    }
+
+    override fun onCleared() {
+        destroyScope()
+        super.onCleared()
     }
 }

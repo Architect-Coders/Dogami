@@ -13,6 +13,8 @@ import com.margge.dogami.data.database.RoomDataSource
 import com.margge.dogami.data.server.DogamiDataSource
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module
@@ -36,5 +38,9 @@ class AppModule {
     fun permissionHelperProvider(app: Application): PermissionHelper = AndroidPermissionHelper(app)
 
     @Provides
-    fun locationDataSourceProvider(app: Application): LocationDataSource = GMSLocationDataSource(app)
+    fun locationDataSourceProvider(app: Application): LocationDataSource =
+        GMSLocationDataSource(app)
+
+    @Provides
+    fun coroutineDispatcherProvider(): CoroutineDispatcher = Dispatchers.Main
 }

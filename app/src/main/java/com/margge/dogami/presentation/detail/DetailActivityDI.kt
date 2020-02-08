@@ -6,6 +6,7 @@ import com.margge.usecases.UpdateGameUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.Subcomponent
+import kotlinx.coroutines.CoroutineDispatcher
 
 @Module
 class DetailActivityModule(private val gameId: Int) {
@@ -19,9 +20,10 @@ class DetailActivityModule(private val gameId: Int) {
     @Provides
     fun detailViewModelProvider(
         getGameByIdUseCase: GetGameByIdUseCase,
-        updateGameUseCase: UpdateGameUseCase
+        updateGameUseCase: UpdateGameUseCase,
+        uiDispatcher: CoroutineDispatcher
     ): DetailViewModel {
-        return DetailViewModel(gameId, getGameByIdUseCase, updateGameUseCase)
+        return DetailViewModel(gameId, getGameByIdUseCase, updateGameUseCase, uiDispatcher)
     }
 }
 
