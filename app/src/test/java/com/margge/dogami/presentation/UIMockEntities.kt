@@ -1,8 +1,8 @@
-package com.margge.dogami.presentation.main
+package com.margge.dogami.presentation
 
 import com.margge.domain.Game
 
-fun getMockedGame(): Game {
+fun getFakeGame(): Game {
     return Game(
         1,
         "Hombres Lobo De Castronegro",

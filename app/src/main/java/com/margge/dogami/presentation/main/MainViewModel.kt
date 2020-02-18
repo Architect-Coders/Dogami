@@ -15,8 +15,8 @@ class MainViewModel(
 
     sealed class UiModel {
         object Loading : UiModel()
-        class Content(val games: List<Game>) : UiModel()
-        class Navigation(val game: Game) : UiModel()
+        data class Content(val games: List<Game>) : UiModel()
+        data class Navigation(val game: Game) : UiModel()
         object RequestLocationPermission : UiModel()
     }
 
