@@ -43,11 +43,7 @@ dependencies {
     kapt androidKaptLibs.values()
 
     testImplementation testLibs.values()
+    kaptTest kaptTestLibs.values()
     testImplementation androidxTestLibs.values()
     androidTestImplementation androidTestLibs.values()
-
-    kaptAndroidTest "com.google.dagger:dagger-compiler:2.24"
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.0'
-    testImplementation 'com.google.dagger:dagger:2.24'
-    kaptTest 'com.google.dagger:dagger-compiler:2.24'
 }
