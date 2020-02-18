@@ -31,18 +31,23 @@ interface TestDogamiComponent : DogamiComponent {
 @Module
 class TestAppModule {
 
+    @Singleton
     @Provides
     fun localDataSourceProvider(): LocalDataSource = FakeLocalDataSource()
 
+    @Singleton
     @Provides
     fun remoteDataSourceProvider(): RemoteDataSource = FakeRemoteDataSource()
 
+    @Singleton
     @Provides
     fun permissionHelperProvider(): PermissionHelper = FakeAndroidPermissionHelper()
 
+    @Singleton
     @Provides
     fun locationDataSourceProvider(): LocationDataSource = FakeLocationDataSource()
 
+    @Singleton
     @Provides
     fun coroutineDispatcherProvider(): CoroutineDispatcher = Dispatchers.Unconfined
 }
