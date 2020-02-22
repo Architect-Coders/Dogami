@@ -6,11 +6,11 @@ import com.margge.domain.Game
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class DogamiDataSource : RemoteDataSource {
+class DogamiDataSource(private val networkHelper: DogamiNetworkHelper) : RemoteDataSource {
 
-    override suspend fun getBoardGames(location:String): List<Game> =
+    override suspend fun getBoardGames(location: String): List<Game> =
         withContext(Dispatchers.IO) {
-            DogamiNetworkHelper.dogamiApi()
+            networkHelper.dogamiApi()
                 .getListGamesAsync(location = location)
                 .await()
                 .map { it.toRoomGame() }

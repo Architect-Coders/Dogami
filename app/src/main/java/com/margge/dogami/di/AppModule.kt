@@ -11,6 +11,7 @@ import com.margge.dogami.data.GMSLocationDataSource
 import com.margge.dogami.data.database.GameDatabase
 import com.margge.dogami.data.database.RoomDataSource
 import com.margge.dogami.data.server.DogamiDataSource
+import com.margge.dogami.data.server.DogamiNetworkHelper
 import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
@@ -19,6 +20,8 @@ import javax.inject.Singleton
 
 @Module
 class AppModule {
+
+    private val baseUrl = "https://api.steinhq.com/v1/storages/5df2fb845a823204986f39aa/"
 
     @Provides
     @Singleton
@@ -32,7 +35,7 @@ class AppModule {
     fun localDataSourceProvider(db: GameDatabase): LocalDataSource = RoomDataSource(db)
 
     @Provides
-    fun remoteDataSourceProvider(): RemoteDataSource = DogamiDataSource()
+    fun remoteDataSourceProvider(): RemoteDataSource = DogamiDataSource(DogamiNetworkHelper(baseUrl))
 
     @Provides
     fun permissionHelperProvider(app: Application): PermissionHelper = AndroidPermissionHelper(app)
