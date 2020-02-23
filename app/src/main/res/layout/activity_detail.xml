@@ -1,135 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
+    <data>
+
+        <variable
+            name="detailViewModel"
+            type="com.margge.dogami.presentation.detail.DetailViewModel" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:theme="@style/AppTheme.DarkOverlay">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <ImageView
-                android:id="@+id/gamePosterImageView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/default_board_game_detail"
-                app:layout_collapseMode="parallax"
-                tools:ignore="ContentDescription" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/gameDetailToolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                tools:title="Hombres Lobo de Castronegro" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/white"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:transitionGroup="true">
+            android:theme="@style/AppTheme.DarkOverlay">
 
-            <TextView
-                android:id="@+id/playersGameTextView"
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <ImageView
+                    android:id="@+id/gamePosterImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/default_board_game_detail"
+                    app:layout_collapseMode="parallax"
+                    app:url="@{detailViewModel.gameUrl}"
+                    tools:ignore="ContentDescription" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/gameDetailToolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:title="@{detailViewModel.gameName}"
+                    tools:title="Hombres Lobo de Castronegro" />
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:fontFamily="@font/amiko_bold"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Cantidad de jugadores: 4 - 5" />
+                android:orientation="vertical"
+                android:transitionGroup="true">
 
-            <TextView
-                android:id="@+id/gameDurationTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:fontFamily="@font/amiko_bold"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Tiempo de partida: 30 minutos" />
+                <TextView
+                    android:id="@+id/playersGameLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko_bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/detail_game_players_number"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/gameComplexityTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/white"
-                android:fontFamily="@font/amiko_bold"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                tools:text="Complejidad: Media" />
+                <TextView
+                    android:id="@+id/playersGameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{detailViewModel.playersNumber}"
+                    android:textSize="18sp"
+                    tools:text="4 - 5" />
 
-            <TextView
-                android:id="@+id/gameNameTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:fontFamily="@font/amiko_semibold"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gamePosterImageView"
-                tools:text="Hombres Lobo de Castronegro" />
+                <TextView
+                    android:id="@+id/gameDurationLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko_bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/detail_game_time"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/gameDescriptionTextView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:background="@android:color/white"
-                android:fontFamily="@font/amiko"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/gamePosterImageView"
-                tools:text="@tools:sample/lorem/random" />
+                <TextView
+                    android:id="@+id/gameDurationTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{detailViewModel.gameDuration}"
+                    android:textSize="18sp"
+                    tools:text="30 minutos" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko_bold"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/detail_game_complexity"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
-    </androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/gameComplexityTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{detailViewModel.gameComplexity}"
+                    android:textSize="18sp"
+                    tools:text="Media" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/favoriteGameButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:src="@drawable/ic_favorite_unselected"
-        app:layout_anchor="@id/appBarLayout"
-        app:layout_anchorGravity="bottom|end" />
+                <TextView
+                    android:id="@+id/gameNameTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko_bold"
+                    android:gravity="center"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{detailViewModel.gameName}"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gamePosterImageView"
+                    tools:text="Hombres Lobo de Castronegro" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/gameDescriptionTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:background="@android:color/white"
+                    android:fontFamily="@font/amiko"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="@{detailViewModel.gameDescription}"
+                    android:textSize="18sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/gamePosterImageView"
+                    tools:text="@tools:sample/lorem/random" />
+
+            </LinearLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/favoriteGameButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_favorite_unselected"
+            app:favorite="@{detailViewModel.gameFavorite}"
+            app:layout_anchor="@id/appBarLayout"
+            app:layout_anchorGravity="bottom|end" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

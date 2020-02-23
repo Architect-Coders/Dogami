@@ -24,15 +24,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         component = app.component.plus(MainActivityModule())
+        setupAdapter()
+        viewModel.model.observe(this, Observer(::updateUI))
+    }
 
+    private fun setupAdapter() {
         adapter = GameAdapter(viewModel::onGameClicked)
         gamesRecycler.adapter = adapter
         gamesRecycler.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         val decoration = SpacesItemDecoration(50)
         gamesRecycler.addItemDecoration(decoration)
-
-        viewModel.model.observe(this, Observer(::updateUI))
     }
 
     private fun updateUI(game: UiModel) {
