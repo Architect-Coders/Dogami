@@ -1,14 +1,12 @@
 package com.margge.dogami.presentation.main.adapter
 
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.margge.dogami.R
+import com.margge.dogami.databinding.GameItemBinding
 import com.margge.dogami.presentation.utils.basicDiffUtil
-import com.margge.dogami.presentation.utils.inflate
-import com.margge.dogami.presentation.utils.loadUrl
+import com.margge.dogami.presentation.utils.bindingInflate
 import com.margge.domain.Game
-import kotlinx.android.synthetic.main.game_item.view.*
 
 class GameAdapter(private val listener: (Game) -> Unit) :
     RecyclerView.Adapter<GameAdapter.GameViewHolder>() {
@@ -20,25 +18,15 @@ class GameAdapter(private val listener: (Game) -> Unit) :
 
     override fun getItemCount(): Int = games.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        val view = parent.inflate(R.layout.game_item, false)
-        return GameViewHolder(view)
-    }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder =
+        GameViewHolder(parent.bindingInflate(R.layout.game_item, false))
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val game = games[position]
-        holder.bind(game)
+        holder.databinding.game = game
         holder.itemView.setOnClickListener { listener(game) }
     }
 
-    class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val gamePosterImage = itemView.gamePosterImageView
-        private val gameName = itemView.gameDetailName
-
-        fun bind(game: Game) {
-            gamePosterImage.loadUrl(game.imageUrl, R.drawable.default_board_game)
-            gameName.text = game.name
-        }
-    }
+    class GameViewHolder(val databinding: GameItemBinding) :
+        RecyclerView.ViewHolder(databinding.root)
 }
