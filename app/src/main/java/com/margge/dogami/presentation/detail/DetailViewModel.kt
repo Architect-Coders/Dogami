@@ -25,6 +25,27 @@ class DetailViewModel(
             return _model
         }
 
+    private val _gameName: MutableLiveData<String> = MutableLiveData()
+    val gameName: LiveData<String> get() = _gameName
+
+    private val _playersNumber: MutableLiveData<String> = MutableLiveData()
+    val playersNumber: LiveData<String> get() = _playersNumber
+
+    private val _gameDuration: MutableLiveData<String> = MutableLiveData()
+    val gameDuration: LiveData<String> get() = _gameDuration
+
+    private val _gameComplexity: MutableLiveData<String> = MutableLiveData()
+    val gameComplexity: LiveData<String> get() = _gameComplexity
+
+    private val _gameDescription: MutableLiveData<String> = MutableLiveData()
+    val gameDescription: LiveData<String> get() = _gameDescription
+
+    private val _gameUrl: MutableLiveData<String> = MutableLiveData()
+    val gameUrl: LiveData<String> get() = _gameUrl
+
+    private val _gameFavorite = MutableLiveData<Boolean>()
+    val gameFavorite: LiveData<Boolean> get() = _gameFavorite
+
     init {
         initScope()
     }
@@ -34,8 +55,20 @@ class DetailViewModel(
     }
 
     fun onFavoriteGameClicked() = launch {
-        _model.value?.game?.let {
+        model.value?.game?.let {
             _model.value = UiModel(updateGameUseCase.invoke(it))
+        }
+    }
+
+    fun updateUI(game: Game) {
+        with(game) {
+            _gameName.value = name
+            _playersNumber.value = "$minPlayers-$maxPlayers"
+            _gameDuration.value = time
+            _gameComplexity.value = complexity
+            _gameDescription.value = description
+            _gameUrl.value = posterUrl
+            _gameFavorite.value = favorite
         }
     }
 
