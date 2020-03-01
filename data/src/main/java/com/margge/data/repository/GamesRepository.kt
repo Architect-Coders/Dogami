@@ -12,10 +12,10 @@ class GamesRepository(
 
     suspend fun getBoardGames(): List<Game> {
 
-       // if (localDataSource.isEmpty()) {
+        if (localDataSource.isEmpty()) {
             val games = remoteDataSource.getBoardGames(locationRepository.getLastLocation())
             localDataSource.saveBoardGames(games)
-        //}
+        }
 
         return localDataSource.getBoardGames()
     }

@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DogamiNetworkHelper(val baseUrl: String) {
 
-    private val okHttpClient: OkHttpClient = HttpLoggingInterceptor().run {
+    val okHttpClient: OkHttpClient = HttpLoggingInterceptor().run {
         level = HttpLoggingInterceptor.Level.BODY
         OkHttpClient.Builder().addInterceptor(this).build()
     }

@@ -16,12 +16,13 @@ import dagger.Module
 import dagger.Provides
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
 class AppModule {
 
-    private val baseUrl = "https://api.steinhq.com/v1/storages/5df2fb845a823204986f39aa/"
+  //  private val url = "https://api.steinhq.com/v1/storages/5df2fb845a823204986f39aa/"
 
     @Provides
     @Singleton
@@ -31,11 +32,17 @@ class AppModule {
             GameDatabase::class.java, "boardGame-db"
         ).build()
 
+//    @Provides
+//    @Singleton
+//    @Named("baseUrl")
+//    fun baseUrlProvider(): String = url
+
     @Provides
     fun localDataSourceProvider(db: GameDatabase): LocalDataSource = RoomDataSource(db)
 
     @Provides
-    fun remoteDataSourceProvider(): RemoteDataSource = DogamiDataSource(DogamiNetworkHelper(baseUrl))
+    fun remoteDataSourceProvider(@Named("baseUrl") baseUrl: String): RemoteDataSource =
+        DogamiDataSource(DogamiNetworkHelper(baseUrl))
 
     @Provides
     fun permissionHelperProvider(app: Application): PermissionHelper = AndroidPermissionHelper(app)

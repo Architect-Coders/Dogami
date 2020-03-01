@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -74,15 +74,16 @@ allprojects {
         ]
 
         androidTestLibs = [
-                testRunner      : 'androidx.test:runner:1.2.0',
-                espresso        : 'androidx.test.espresso:espresso-contrib:3.2.0',
-                rules           : 'androidx.test:rules:1.2.0',
-                extJunit        : 'androidx.test.ext:junit-ktx:1.1.1',
-                koinTest        : 'org.koin:koin-test:2.0.1',
-                mockWebServer   : 'com.squareup.okhttp3:mockwebserver:4.4.0',
-                okhttpIdling    : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0',
-                espressoIntents : "androidx.test.espresso:espresso-intents:3.2.0"
-
+                testRunner              : 'androidx.test:runner:1.2.0',
+                espresso                : 'androidx.test.espresso:espresso-contrib:3.2.0',
+                rules                   : 'androidx.test:rules:1.2.0',
+                extJunit                : 'androidx.test.ext:junit-ktx:1.1.1',
+                koinTest                : 'org.koin:koin-test:2.0.1',
+                mockWebServer           : 'com.squareup.okhttp3:mockwebserver:4.4.0',
+                okhttpIdling            : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0',
+                espressoIntents         : "androidx.test.espresso:espresso-intents:3.2.0"
+//                daggerTestsUI           : 'com.google.dagger:dagger:2.23.1',
+//                daggerTestCompilerUI    :  'com.google.dagger:dagger-compiler:2.23.1'
         ]
     }
 }
