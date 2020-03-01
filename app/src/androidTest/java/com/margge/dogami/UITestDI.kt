@@ -38,7 +38,7 @@ class UiTestServerModule {
     @Provides
     @Singleton
     @Named("baseUrl")
-    fun baseUrlProvider(): String = ""
+    fun baseUrlProvider(): String = "http://127.0.0.1:8080"
 
     @Provides
     @Singleton
