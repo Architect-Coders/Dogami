@@ -2,10 +2,9 @@ package com.margge.dogami.presentation.detail
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.margge.dogami.presentation.main.getMockedGame
+import com.margge.dogami.presentation.getFakeGame
 import com.margge.usecases.GetGameByIdUseCase
 import com.margge.usecases.UpdateGameUseCase
-import com.nhaarman.mockitokotlin2.refEq
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import kotlinx.coroutines.Dispatchers
@@ -41,12 +40,12 @@ class DetailViewModelTest {
     fun `when liveData starts being observed then should call getGameByIdUseCase`() {
         runBlocking {
             //When
-            val game = getMockedGame()
+            val game = getFakeGame()
             whenever(getGameByIdUseCase.invoke(gameId)).thenReturn(game)
             viewModel.model.observeForever(observer)
 
             //Then
-            verify(observer).onChanged(refEq(DetailViewModel.UiModel(game)))
+            verify(observer).onChanged(DetailViewModel.UiModel(game))
         }
     }
 
@@ -54,7 +53,7 @@ class DetailViewModelTest {
     fun `when onFavoriteGameClicked then should call updateGameUseCase`() {
         runBlocking {
             //When
-            val game = getMockedGame()
+            val game = getFakeGame()
             whenever(getGameByIdUseCase.invoke(gameId)).thenReturn(game)
             whenever(updateGameUseCase.invoke(game)).thenReturn(game.copy(favorite = !game.favorite))
 
@@ -62,7 +61,7 @@ class DetailViewModelTest {
             viewModel.onFavoriteGameClicked()
 
             //Then
-            verify(observer).onChanged(refEq(DetailViewModel.UiModel(game)))
+            verify(observer).onChanged(DetailViewModel.UiModel(game))
         }
     }
 }

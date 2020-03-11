@@ -9,7 +9,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0'
+        classpath 'com.android.tools.build:gradle:3.5.3'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -43,24 +43,30 @@ allprojects {
         androidKaptLibs = [
                 roomCompiler : 'androidx.room:room-compiler:2.2.3',
                 glideCompiler: 'com.github.bumptech.glide:compiler:4.9.0',
-                kaptCompiler : 'com.google.dagger:dagger-compiler:2.23.1'
+                kaptCompiler : 'com.google.dagger:dagger-compiler:2.24'
         ]
 
         libs = [
-                okhttpLoginInterceptor   : 'com.squareup.okhttp3:logging-interceptor:3.14.1',
-                retrofit                 : 'com.squareup.retrofit2:retrofit:2.5.0',
-                retrofitGsonConverter    : 'com.squareup.retrofit2:converter-gson:2.5.0',
+                okhttp                   : "com.squareup.okhttp3:okhttp:4.4.0",
+                okhttpLoginInterceptor   : 'com.squareup.okhttp3:logging-interceptor:4.4.0',
+                retrofit                 : 'com.squareup.retrofit2:retrofit:2.6.0',
+                retrofitGsonConverter    : 'com.squareup.retrofit2:converter-gson:2.6.0',
                 retrofitCoroutinesAdapter: 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:0.9.2',
-                dagger                   : "com.google.dagger:dagger:2.23.1",
+                dagger                   : "com.google.dagger:dagger:2.24",
                 glide                    : 'com.github.bumptech.glide:glide:4.9.0',
                 dexter                   : 'com.karumi:dexter:5.0.0',
-                swiperefresh        : 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
+                swiperefresh             : 'androidx.swiperefreshlayout:swiperefreshlayout:1.0.0'
         ]
 
         testLibs = [
                 junit        : 'junit:junit:4.12',
                 mockitoKotlin: "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0",
-                mockitoInline: "org.mockito:mockito-inline:2.28.2"
+                mockitoInline: "org.mockito:mockito-inline:2.28.2",
+                daggerTests  : 'com.google.dagger:dagger:2.24'
+        ]
+
+        kaptTestLibs = [
+                daggerTestCompiler: 'com.google.dagger:dagger-compiler:2.24'
         ]
 
         androidxTestLibs = [
@@ -68,8 +74,16 @@ allprojects {
         ]
 
         androidTestLibs = [
-                testRunner: 'androidx.test:runner:1.2.0',
-                espresso  : 'androidx.test.espresso:espresso-core:3.2.0'
+                testRunner              : 'androidx.test:runner:1.2.0',
+                espresso                : 'androidx.test.espresso:espresso-contrib:3.2.0',
+                rules                   : 'androidx.test:rules:1.2.0',
+                extJunit                : 'androidx.test.ext:junit-ktx:1.1.1',
+                koinTest                : 'org.koin:koin-test:2.0.1',
+                mockWebServer           : 'com.squareup.okhttp3:mockwebserver:4.4.0',
+                okhttpIdling            : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0',
+                espressoIntents         : "androidx.test.espresso:espresso-intents:3.2.0"
+//                daggerTestsUI           : 'com.google.dagger:dagger:2.23.1',
+//                daggerTestCompilerUI    :  'com.google.dagger:dagger-compiler:2.23.1'
         ]
     }
 }

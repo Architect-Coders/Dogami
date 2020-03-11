@@ -2,6 +2,7 @@ package com.margge.dogami.presentation.main
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import com.margge.dogami.presentation.getFakeGame
 import com.margge.usecases.GetGamesUseCase
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
@@ -11,7 +12,6 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.mockito.ArgumentMatchers.refEq
 import org.mockito.Mock
 import org.mockito.junit.MockitoJUnitRunner
 
@@ -43,19 +43,19 @@ class MainViewModelTest {
     @Test
     fun `when onGameClicked then should call navigation event with the specific game`() {
         //When
-        val game = getMockedGame()
+        val game = getFakeGame()
         viewModel.model.observeForever(observer)
         viewModel.onGameClicked(game)
 
         //Then
-        verify(observer).onChanged(refEq(MainViewModel.UiModel.Navigation(game)))
+        verify(observer).onChanged(MainViewModel.UiModel.Navigation(game))
     }
 
     @Test
     fun `when locationPermission was requested then should launch loading`() {
         //When
         runBlocking {
-            whenever(getGamesUseCase.invoke()).thenReturn(listOf(getMockedGame()))
+            whenever(getGamesUseCase.invoke()).thenReturn(listOf(getFakeGame()))
             viewModel.model.observeForever(observer)
             viewModel.onCoarsePermissionRequested()
         }
@@ -67,7 +67,7 @@ class MainViewModelTest {
     @Test
     fun `when locationPermission was requested then should updated content`() {
         //When
-        val gamesList = listOf(getMockedGame())
+        val gamesList = listOf(getFakeGame())
         runBlocking {
             whenever(getGamesUseCase.invoke()).thenReturn(gamesList)
             viewModel.model.observeForever(observer)
@@ -75,6 +75,6 @@ class MainViewModelTest {
         }
 
         //Then
-        verify(observer).onChanged(refEq(MainViewModel.UiModel.Content(gamesList)))
+        verify(observer).onChanged(MainViewModel.UiModel.Content(gamesList))
     }
 }

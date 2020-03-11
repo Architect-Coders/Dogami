@@ -4,16 +4,15 @@ import android.app.Application
 import com.margge.dogami.di.DaggerDogamiComponent
 import com.margge.dogami.di.DogamiComponent
 
-class DogamiApp : Application() {
+open class DogamiApp : Application() {
 
     lateinit var component: DogamiComponent
         private set
 
     override fun onCreate() {
         super.onCreate()
-
-        component = DaggerDogamiComponent
-            .factory()
-            .create(this)
+        component = initComponent()
     }
+
+    open fun initComponent() = DaggerDogamiComponent.factory().create(this)
 }

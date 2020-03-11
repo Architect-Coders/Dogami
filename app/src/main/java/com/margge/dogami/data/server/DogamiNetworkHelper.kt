@@ -1,21 +1,28 @@
 package com.margge.dogami.data.server
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object DogamiNetworkHelper {
+class DogamiNetworkHelper(val baseUrl: String) {
+
+    val okHttpClient: OkHttpClient = HttpLoggingInterceptor().run {
+        level = HttpLoggingInterceptor.Level.BODY
+        OkHttpClient.Builder().addInterceptor(this).build()
+    }
 
     private fun retrofit(): Retrofit {
         return Retrofit.Builder()
-            .baseUrl("https://api.steinhq.com/v1/storages/5df2fb845a823204986f39aa/")
+            .baseUrl(baseUrl)
+            .client(okHttpClient)
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
     fun dogamiApi(): DogamiApi {
-        return retrofit()
-            .create(DogamiApi::class.java)
+        return retrofit().create(DogamiApi::class.java)
     }
 }
