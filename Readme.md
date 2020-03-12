@@ -11,3 +11,10 @@ This is a small app that displays a list of games, by clicking an item you can s
 - Also you can mark a game as a favorite.
  
 In summary this is a wiki for board games!  
+
+### Screens
+
+![Screen One](images/ScreenOne.png)
+![Screen Two](images/ScreenTwo.png)
+![Screen Two](images/ScreenThree.png)
+![Screen Two](images/ScreenFour.png)
