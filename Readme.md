@@ -3,6 +3,8 @@ Dogami
 
 Are you a board game lover?
 
+### About the project:
+
 This is a small app that displays a list of games, by clicking an item you can see a detail that contains:
 - Players number.
 - Game complexity.
@@ -12,7 +14,7 @@ This is a small app that displays a list of games, by clicking an item you can s
  
 In summary, this is a wiki for board games!  
 
-About the project:
+### About its architecture 
 
 - The app has two screens and uses a personal API that has board games info.
 - The first screen loads a list of games and displays them in a GridLayout.
@@ -21,7 +23,7 @@ About the project:
 - The dependency injection is using Dagger2.
 - Tests are also using Dagger2.
 
-### Screens
+### App screens
 
 ![Screen One](images/ScreenOne.png)
 ![Screen Two](images/ScreenTwo.png)
