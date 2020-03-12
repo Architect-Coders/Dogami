@@ -69,6 +69,10 @@ allprojects {
                 daggerTestCompiler: 'com.google.dagger:dagger-compiler:2.24'
         ]
 
+        kaptAndroidTestLibs = [
+                daggerAndroidCompiler: 'com.google.dagger:dagger-compiler:2.23.1'
+        ]
+
         androidxTestLibs = [
                 archCoreTesting: 'android.arch.core:core-testing:1.1.1'
         ]
@@ -81,9 +85,8 @@ allprojects {
                 koinTest                : 'org.koin:koin-test:2.0.1',
                 mockWebServer           : 'com.squareup.okhttp3:mockwebserver:4.4.0',
                 okhttpIdling            : 'com.jakewharton.espresso:okhttp3-idling-resource:1.0.0',
-                espressoIntents         : "androidx.test.espresso:espresso-intents:3.2.0"
-//                daggerTestsUI           : 'com.google.dagger:dagger:2.23.1',
-//                daggerTestCompilerUI    :  'com.google.dagger:dagger-compiler:2.23.1'
+                espressoIntents         : 'androidx.test.espresso:espresso-intents:3.2.0',
+                daggerTestsUI           : 'com.google.dagger:dagger:2.23.1'
         ]
     }
 }

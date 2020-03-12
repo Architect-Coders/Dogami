@@ -22,8 +22,6 @@ import javax.inject.Singleton
 @Module
 class AppModule {
 
-  //  private val url = "https://api.steinhq.com/v1/storages/5df2fb845a823204986f39aa/"
-
     @Provides
     @Singleton
     fun databaseProvider(app: Application) =
@@ -31,11 +29,6 @@ class AppModule {
             app,
             GameDatabase::class.java, "boardGame-db"
         ).build()
-
-//    @Provides
-//    @Singleton
-//    @Named("baseUrl")
-//    fun baseUrlProvider(): String = url
 
     @Provides
     fun localDataSourceProvider(db: GameDatabase): LocalDataSource = RoomDataSource(db)

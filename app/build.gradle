@@ -50,7 +50,5 @@ dependencies {
     kaptTest kaptTestLibs.values()
     testImplementation androidxTestLibs.values()
     androidTestImplementation androidTestLibs.values()
-
-    androidTestImplementation 'com.google.dagger:dagger:2.23.1'
-    kaptAndroidTest 'com.google.dagger:dagger-compiler:2.23.1'
+    kaptAndroidTest kaptAndroidTestLibs.values()
 }
