@@ -8,9 +8,18 @@ This is a small app that displays a list of games, by clicking an item you can s
 - Game complexity.
 - Game time.
 - Game description.
-- Also you can mark a game as a favorite.
+- Also, you can mark a game as a favorite.
  
-In summary this is a wiki for board games!  
+In summary, this is a wiki for board games!  
+
+About the project:
+
+- The app has two screens and uses a personal API that has board games info.
+- The first screen loads a list of games and displays them in a GridLayout.
+- The second screen shows a game detail where you can mark a game as a favorite.
+- The app is implementing the MVVM presentation pattern with data-binding.
+- The dependency injection is using Dagger2.
+- Tests are also using Dagger2.
 
 ### Screens
 
