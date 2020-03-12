@@ -41,8 +41,8 @@ class MainViewModel(
 
     fun onCoarsePermissionRequested() {
         launch {
-            _model.value = UiModel.Loading
             _model.value = UiModel.Content(getGamesUseCase.invoke())
+            _model.value = UiModel.Loading
         }
     }
 
