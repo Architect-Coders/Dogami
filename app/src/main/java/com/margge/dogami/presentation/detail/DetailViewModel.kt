@@ -1,5 +1,6 @@
 package com.margge.dogami.presentation.detail
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.margge.dogami.presentation.utils.ScopedViewModel
@@ -8,9 +9,10 @@ import com.margge.usecases.GetGameByIdUseCase
 import com.margge.usecases.UpdateGameUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
+import javax.inject.Named
 
-class DetailViewModel(
-    private val gameId: Int,
+class DetailViewModel @ViewModelInject constructor(
+    @Named("gameId") private val gameId: Int,
     private val getGameByIdUseCase: GetGameByIdUseCase,
     private val updateGameUseCase: UpdateGameUseCase,
     override val uiDispatcher: CoroutineDispatcher

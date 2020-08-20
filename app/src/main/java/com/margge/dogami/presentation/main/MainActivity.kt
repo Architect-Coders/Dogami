@@ -3,6 +3,7 @@ package com.margge.dogami.presentation.main
 import android.Manifest
 import android.os.Bundle
 import android.view.View.GONE
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -11,13 +12,16 @@ import com.margge.dogami.presentation.detail.DetailActivity
 import com.margge.dogami.presentation.main.MainViewModel.UiModel
 import com.margge.dogami.presentation.main.adapter.GameAdapter
 import com.margge.dogami.presentation.utils.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: GameAdapter
-    private lateinit var component: MainActivityComponent
-    private val viewModel: MainViewModel by lazy { getViewModel { component.mainViewModel } }
+    private val viewModel: MainViewModel by viewModels()
+    //private lateinit var component: MainActivityComponent
+
     private val permissionRequester =
         PermissionRequester(this, Manifest.permission.ACCESS_COARSE_LOCATION)
 
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        component = app.component.plus(MainActivityModule())
+        //component = app.component.plus(MainActivityModule())
         setupAdapter()
         viewModel.model.observe(this, Observer(::updateUI))
     }

@@ -1,15 +1,29 @@
 package com.margge.dogami.presentation.detail
 
+import android.app.Activity
 import com.margge.data.repository.GamesRepository
 import com.margge.usecases.GetGameByIdUseCase
 import com.margge.usecases.UpdateGameUseCase
 import dagger.Module
 import dagger.Provides
-import dagger.Subcomponent
-import kotlinx.coroutines.CoroutineDispatcher
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ActivityRetainedComponent
+import javax.inject.Named
 
 @Module
-class DetailActivityModule(private val gameId: Int) {
+@InstallIn(ActivityComponent::class)
+class DetailActivityModule {
+
+    @Provides
+    @Named("gameId")
+    fun getGameId(activity: Activity) = activity.intent.getIntExtra(DetailActivity.GAME, -1)
+
+}
+
+@Module
+@InstallIn(ActivityRetainedComponent::class)
+class DetailActivityRetainedModule {
 
     @Provides
     fun getGameByIdUseCaseProvider(repository: GamesRepository) = GetGameByIdUseCase(repository)
@@ -17,17 +31,17 @@ class DetailActivityModule(private val gameId: Int) {
     @Provides
     fun updateGameUseCaseProvider(repository: GamesRepository) = UpdateGameUseCase(repository)
 
-    @Provides
-    fun detailViewModelProvider(
-        getGameByIdUseCase: GetGameByIdUseCase,
-        updateGameUseCase: UpdateGameUseCase,
-        uiDispatcher: CoroutineDispatcher
-    ): DetailViewModel {
-        return DetailViewModel(gameId, getGameByIdUseCase, updateGameUseCase, uiDispatcher)
-    }
+//    @Provides
+//    fun detailViewModelProvider(
+//        getGameByIdUseCase: GetGameByIdUseCase,
+//        updateGameUseCase: UpdateGameUseCase,
+//        uiDispatcher: CoroutineDispatcher
+//    ): DetailViewModel {
+//        return DetailViewModel(gameId, getGameByIdUseCase, updateGameUseCase, uiDispatcher)
+//    }
 }
 
-@Subcomponent(modules = [DetailActivityModule::class])
-interface DetailActivityComponent {
-    val detailViewModel: DetailViewModel
-}
+//@Subcomponent(modules = [DetailActivityModule::class])
+//interface DetailActivityComponent {
+//    val detailViewModel: DetailViewModel
+//}

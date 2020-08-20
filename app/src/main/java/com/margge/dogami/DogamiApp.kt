@@ -1,18 +1,19 @@
 package com.margge.dogami
 
 import android.app.Application
-import com.margge.dogami.di.DaggerDogamiComponent
-import com.margge.dogami.di.DogamiComponent
+import dagger.hilt.android.HiltAndroidApp
 
-open class DogamiApp : Application() {
+@HiltAndroidApp
+class DogamiApp : Application()
 
-    lateinit var component: DogamiComponent
-        private set
-
-    override fun onCreate() {
-        super.onCreate()
-        component = initComponent()
-    }
-
-    open fun initComponent() = DaggerDogamiComponent.factory().create(this)
-}
+//{
+//    lateinit var component: DogamiComponent
+//        private set
+//
+//    override fun onCreate() {
+//        super.onCreate()
+//        component = initComponent()
+//    }
+//
+//    open fun initComponent() = DaggerDogamiComponent.factory().create(this)
+//}

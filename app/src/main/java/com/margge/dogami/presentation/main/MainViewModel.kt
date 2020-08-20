@@ -1,5 +1,6 @@
 package com.margge.dogami.presentation.main
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.margge.dogami.presentation.utils.ScopedViewModel
@@ -8,7 +9,7 @@ import com.margge.usecases.GetGamesUseCase
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.launch
 
-class MainViewModel(
+class MainViewModel @ViewModelInject constructor(
     private val getGamesUseCase: GetGamesUseCase,
     uiDispatcher: CoroutineDispatcher
 ) : ScopedViewModel(uiDispatcher) {

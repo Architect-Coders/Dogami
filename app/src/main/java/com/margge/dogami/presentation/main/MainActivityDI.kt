@@ -4,23 +4,24 @@ import com.margge.data.repository.GamesRepository
 import com.margge.usecases.GetGamesUseCase
 import dagger.Module
 import dagger.Provides
-import dagger.Subcomponent
-import kotlinx.coroutines.CoroutineDispatcher
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityRetainedComponent
 
 @Module
+@InstallIn(ActivityRetainedComponent::class)
 class MainActivityModule {
 
     @Provides
     fun getGamesUseCaseProvider(repository: GamesRepository) = GetGamesUseCase(repository)
 
-    @Provides
-    fun mainViewModelProvider(
-        getGamesUseCase: GetGamesUseCase,
-        uiDispatcher: CoroutineDispatcher
-    ) = MainViewModel(getGamesUseCase, uiDispatcher)
+//    @Provides
+//    fun mainViewModelProvider(
+//        getGamesUseCase: GetGamesUseCase,
+//        uiDispatcher: CoroutineDispatcher
+//    ) = MainViewModel(getGamesUseCase, uiDispatcher)
 }
 
-@Subcomponent(modules = [MainActivityModule::class])
-interface MainActivityComponent {
-    val mainViewModel: MainViewModel
-}
+//@Subcomponent(modules = [MainActivityModule::class])
+//interface MainActivityComponent {
+//    val mainViewModel: MainViewModel
+//}
