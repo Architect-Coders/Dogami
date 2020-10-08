@@ -20,7 +20,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: GameAdapter
     private val viewModel: MainViewModel by viewModels()
-    //private lateinit var component: MainActivityComponent
 
     private val permissionRequester =
         PermissionRequester(this, Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //component = app.component.plus(MainActivityModule())
         setupAdapter()
         viewModel.model.observe(this, Observer(::updateUI))
     }

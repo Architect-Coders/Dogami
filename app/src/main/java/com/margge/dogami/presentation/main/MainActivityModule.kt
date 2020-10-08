@@ -13,15 +13,4 @@ class MainActivityModule {
 
     @Provides
     fun getGamesUseCaseProvider(repository: GamesRepository) = GetGamesUseCase(repository)
-
-//    @Provides
-//    fun mainViewModelProvider(
-//        getGamesUseCase: GetGamesUseCase,
-//        uiDispatcher: CoroutineDispatcher
-//    ) = MainViewModel(getGamesUseCase, uiDispatcher)
 }
-
-//@Subcomponent(modules = [MainActivityModule::class])
-//interface MainActivityComponent {
-//    val mainViewModel: MainViewModel
-//}

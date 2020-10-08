@@ -17,13 +17,10 @@ class DetailActivity : AppCompatActivity() {
         const val GAME = "DetailActivity:game"
     }
 
-    //private lateinit var component: DetailActivityComponent
     private val viewModel: DetailViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //component = app.component.plus(DetailActivityModule(intent.getIntExtra(GAME, -1)))
-
         val binding: ActivityDetailBinding =
             DataBindingUtil.setContentView(this, R.layout.activity_detail)
         binding.detailViewModel = viewModel

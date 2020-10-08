@@ -31,17 +31,4 @@ class DetailActivityRetainedModule {
     @Provides
     fun updateGameUseCaseProvider(repository: GamesRepository) = UpdateGameUseCase(repository)
 
-//    @Provides
-//    fun detailViewModelProvider(
-//        getGameByIdUseCase: GetGameByIdUseCase,
-//        updateGameUseCase: UpdateGameUseCase,
-//        uiDispatcher: CoroutineDispatcher
-//    ): DetailViewModel {
-//        return DetailViewModel(gameId, getGameByIdUseCase, updateGameUseCase, uiDispatcher)
-//    }
 }
-
-//@Subcomponent(modules = [DetailActivityModule::class])
-//interface DetailActivityComponent {
-//    val detailViewModel: DetailViewModel
-//}
